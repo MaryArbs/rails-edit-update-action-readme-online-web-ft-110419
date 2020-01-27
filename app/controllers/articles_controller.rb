@@ -18,6 +18,16 @@ class ArticlesController < ApplicationController
     @article.save
     redirect_to article_path(@article)
   end
+  
+  def edit #load data into the form so user can edit specific instance
+    @article = Article.find(params[:id])
+  end
+   
+  def update
+    @article = Article.find(params[:id])
+    @article.update(title: params[:article][:title], description: params[:article][:description])
+    redirect_to article_path(@article)
 
-  # add edit and update methods here
+    #`Article.find(1).update(title: "I'm Changed", description: "And here too!")
+  end
 end
